@@ -50,7 +50,7 @@
 <body>
   <div id="editor-container">
     <textarea id="code-editor" placeholder="Write your HTML and JavaScript code here..."></textarea>
-    <button id="download-button" onclick="downloadCode()">Download JavaScript</button>
+    <button id="download-button" onclick="downloadCode()">Download HTML</button>
   </div>
   <div id="preview-pane"></div>
 
@@ -66,12 +66,25 @@
     }
 
     function downloadCode() {
-      const code = codeEditor.value;
-      const blob = new Blob([code], { type: 'text/javascript' });
+      const htmlCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Game</title>
+</head>
+<body>
+  <script>
+${codeEditor.value}
+  </script>
+</body>
+</html>`;
+
+      const blob = new Blob([htmlCode], { type: 'text/html' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'script.js';
+      a.download = 'game.html';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
