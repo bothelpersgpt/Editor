@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Username Verification</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #verification-form {
+      text-align: center;
+    }
+
+    #username {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #verify-button {
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="verification-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    <button type="button" id="verify-button" onclick="verifyUsername()">Verify</button>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      checkVerificationStatus();
+    });
+
+    function verifyUsername() {
+      const usernameInput = document.getElementById('username');
+      const messageDiv = document.getElementById('message');
+
+      const username = usernameInput.value;
+
+      if (username.trim() === '') {
+        alert('Please enter a username.');
+        return;
+      }
+
+      const isVerified = localStorage.getItem('verified');
+
+      if (isVerified) {
+        showMessage('Thanks');
+      } else {
+        // Display the first message
+        showMessage('Thanks very much for verifying');
+
+        // Save verification status
+        localStorage.setItem('verified', 'true');
+
+        // After a delay, change the message
+        setTimeout(function () {
+          showMessage('Thanks now detected window saves now.');
+        }, 2000); // Change the message after 2000 milliseconds (2 seconds)
+      }
+    }
+
+    function showMessage(text) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.innerHTML = text;
+      messageDiv.style.display = 'block';
+    }
+
+    function checkVerificationStatus() {
+      const isVerified = localStorage.getItem('verified');
+
+      if (isVerified) {
+        showMessage('Thanks');
+      }
+    }
+  </script>
+</body>
+</html>
