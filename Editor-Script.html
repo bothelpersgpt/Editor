@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Development Tool</title>
+  <style>
+    body {
+      display: flex;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #editor-container {
+      flex: 1;
+      height: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #code-editor {
+      flex: 1;
+      overflow: auto;
+      font-size: 16px;
+    }
+
+    #preview-pane {
+      flex: 1;
+      overflow: auto;
+      border-left: 2px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+
+    #download-button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="editor-container">
+    <textarea id="code-editor" placeholder="Write your HTML and JavaScript code here..."></textarea>
+    <button id="download-button" onclick="downloadCode()">Download JavaScript</button>
+  </div>
+  <div id="preview-pane"></div>
+
+  <script>
+    const codeEditor = document.getElementById('code-editor');
+    const previewPane = document.getElementById('preview-pane');
+    
+    codeEditor.addEventListener('input', updatePreview);
+
+    function updatePreview() {
+      const code = codeEditor.value;
+      previewPane.innerHTML = code;
+    }
+
+    function downloadCode() {
+      const code = codeEditor.value;
+      const blob = new Blob([code], { type: 'text/javascript' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'script.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
