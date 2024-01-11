@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function() {
             // Get the current path from the URL
             var path = window.location.pathname;
 
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 replaceContent();
             }
 
-            // Function to check if the path exists (you can customize this logic)
+            // Function to check if the path exists
             function pathExists(path) {
                 // You might want to implement your own logic to check if the path exists
                 // For simplicity, let's assume any path that doesn't contain "existing" doesn't exist
