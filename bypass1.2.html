@@ -68,7 +68,7 @@
 <body>
     <div id="editor-container">
         <textarea id="code-editor" placeholder="Write your HTML script.."></textarea>
-        <button id="download-button" onclick="downloadCode()">Download HTML</button>
+        <button id="download-button" onclick="runCode()">Download HTML</button>
     </div>
     <div id="preview-pane"></div>
 
@@ -96,6 +96,11 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+        }
+
+        // Introduce a deliberate error here:
+        function runCode() {
+            nonExistentFunction(); // This function does not exist, causing an error.
         }
     </script>
     <script src="script.js"></script>
