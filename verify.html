@@ -1,53 +1,102 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shutdown Message</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-        }
-        .shutdown-container {
-            background-color: #333;
-            padding: 20px;
-            margin: 50px auto;
-            max-width: 400px;
-            border-radius: 10px;
-        }
-        .shutdown-message {
-            font-size: 24px;
-            margin-top: 10px;
-        }
-        .discord-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #00acee;
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .logo {
-            display: block;
-            margin: 20px auto;
-            max-width: 100%;
-            height: auto;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Username Verification</title>
+  <link rel="icon" type="image/jpg" href="https://editers.pages.dev/e.ico" sizes="48x48" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #verification-form {
+      text-align: center;
+    }
+
+    #username {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    #verify-button {
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: green;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <div class="shutdown-container">
-        <img class="logo" src="https://editers.pages.dev/e.ico" alt="Logo">
-        <p class="shutdown-message">Shutdown: We'll be back soon. Please wait for us.</p>
-        <a class="discord-link" href="https://discord.gg/yCMrFF8CZm" target="_blank">Join our Discord server</a>
-    </div>
-    <!-- Your other HTML content goes here -->
+  <div id="verification-form">
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    <button type="button" id="verify-button" onclick="verifyUsername()">Verify</button>
+  </div>
+
+  <div id="message"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      checkVerificationStatus();
+    });
+
+    function verifyUsername() {
+      const usernameInput = document.getElementById('username');
+      const messageDiv = document.getElementById('message');
+
+      const username = usernameInput.value;
+
+      if (username.trim() === '') {
+        alert('Please enter a username.');
+        return;
+      }
+
+      const isVerified = localStorage.getItem('verified');
+
+      if (isVerified) {
+        showMessage('Thanks');
+      } else {
+        // Display the first message
+        showMessage('Thanks very much for verifying');
+
+        // Save verification status
+        localStorage.setItem('verified', 'true');
+
+        // After a delay, change the message
+        setTimeout(function () {
+          showMessage('Thanks now detected window saves now.');
+        }, 2000); // Change the message after 2000 milliseconds (2 seconds)
+      }
+    }
+
+    function showMessage(text) {
+      const messageDiv = document.getElementById('message');
+      messageDiv.innerHTML = text;
+      messageDiv.style.display = 'block';
+    }
+
+    function checkVerificationStatus() {
+      const isVerified = localStorage.getItem('verified');
+
+      if (isVerified) {
+        showMessage('Thanks');
+      }
+    }
+  </script>
 </body>
 </html>

@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shutdown Message</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+        .shutdown-container {
+            background-color: #333;
+            padding: 20px;
+            margin: 50px auto;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+        .shutdown-message {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+        .discord-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #00acee;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .logo {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="shutdown-container">
+        <img class="logo" src="https://editers.pages.dev/e.ico" alt="Logo">
+        <p class="shutdown-message">Shutdown: We'll be back soon. Please wait for us.</p>
+        <a class="discord-link" href="https://discord.gg/yCMrFF8CZm" target="_blank">Join our Discord server</a>
+    </div>
+    <!-- Your other HTML content goes here -->
+</body>
+</html>
