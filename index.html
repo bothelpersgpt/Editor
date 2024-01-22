@@ -1,1 +1,106 @@
-This Website was Currently Left Alone No Longer Avaiable To Proceed  do /notavaiable
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Development Tool</title>
+    <link rel="icon" type="image/jpg" href="https://editers.pages.dev/e.ico" sizes="48x48" />
+    <style>
+        body {
+            display: flex;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #2c3e50; /* Background color */
+            color: #ecf0f1; /* Text color */
+        }
+
+        #editor-container {
+            flex: 1;
+            height: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background-color: #34495e; /* Editor background color */
+            color: #ecf0f1; /* Editor text color */
+        }
+
+        #code-editor {
+            flex: 1;
+            overflow: auto;
+            font-size: 16px;
+            border: none;
+            padding: 10px;
+            color: #ecf0f1; /* Editor text color */
+            background-color: #2c3e50; /* Editor input background color */
+            resize: none; /* Disable textarea resizing */
+        }
+
+        #download-button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #27ae60; /* Download button background color */
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #download-button:hover {
+            background-color: #219653; /* Download button hover color */
+        }
+
+        #preview-pane {
+            flex: 1;
+            overflow: auto;
+            border-left: 2px solid #4CAF50; /* Preview pane border color */
+            padding: 10px;
+            background-color: #2c3e50; /* Preview pane background color */
+            color: #ecf0f1; /* Preview pane text color */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="editor-container">
+        <textarea id="code-editor" placeholder="Write your HTML script.."></textarea>
+        <button id="download-button" onclick="downloadCode()">Download HTML</button>
+    </div>
+    <div id="preview-pane"></div>
+
+    <script>
+        const codeEditor = document.getElementById('code-editor');
+        const previewPane = document.getElementById('preview-pane');
+
+        codeEditor.addEventListener('input', updatePreview);
+
+        function updatePreview() {
+            const code = codeEditor.value;
+            previewPane.innerHTML = code;
+        }
+
+        function downloadCode() {
+            const code = codeEditor.value;
+            const blob = new Blob([code], {
+                type: 'text/html'
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'app.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+    <script src="script.js"></script>
+    <script src="player.js"></script>
+</body>
+
+</html>
+
